@@ -50,14 +50,14 @@ def decryptDigraph(grid, input):
     secondY = secondPosition / 5
 
     if firstX == secondX:
-            firstLetter = grid[(((firstY - 1) % 5) * 5) + firstX]
-            secondLetter = grid[(((secondY - 1) % 5) * 5) + secondX]
+            firstLetter = grid[firstX + (((firstY - 1) % 5) * 5)]
+            secondLetter = grid[secondX + (((secondY - 1) % 5) * 5)]
     elif firstY == secondY:
-            firstLetter = grid[(firstY * 5) + ((firstX - 1) % 5)]
-            secondLetter = grid[(secondY * 5) + ((secondX - 1) % 5)]
+            firstLetter = grid[((firstX - 1) % 5) + (firstY * 5)]
+            secondLetter = grid[((secondX - 1) % 5) + (secondY * 5)]
     else:
-            firstLetter = grid[(firstY * 5) + secondX]
-            secondLetter = grid[(secondY * 5) + firstX]
+            firstLetter = grid[secondX + (firstY * 5)]
+            secondLetter = grid[firstX + (secondY * 5)]
 
     digraph = firstLetter+secondLetter
     return digraph
@@ -188,6 +188,7 @@ for i in file('english_quadgrams.txt'):
 summ = 0
 for i in quadGrams.keys():
     summ += quadGrams[i]
+
 for i in quadGrams.keys():
     quadGrams[i] = log10(float(quadGrams[i])/summ)
 # grid = 'HZRTDYEPKLABVFMXNGCQOIWSU'
